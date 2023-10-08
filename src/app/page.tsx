@@ -19,7 +19,7 @@ export default function Home() {
         </h1>
         <p className="mt-5 max-w-prose text-zinc-700 dark:text-zinc-400 sm:text-lg ">
           ai-pdf allows you to have conversations with any PDF document. simply
-          upload your file and start asking questions right away
+          upload your file and start asking questions right away.
         </p>
         <Link
           className={buttonVariants({
