@@ -7,6 +7,8 @@ import {
 } from "@kinde-oss/kinde-auth-nextjs/server";
 import { Github } from "lucide-react";
 import UserAccountNav from "./UserAccountNav";
+import MobileNav from "./MobileNav";
+import ToggleTheme from "./ToggleTheme";
 
 const Navbar = () => {
   const { getUser } = getKindeServerSession();
@@ -29,7 +31,21 @@ const Navbar = () => {
             </span>
           </Link>
           {/* mobile nav */}
+          <MobileNav isAuth={!!user} imageUrl={user.picture ?? ""} name={`${user.given_name} ${user.family_name}`} />
+
           <div className="hidden items-center space-x-4 sm:flex">
+            <Link
+              href="https://github.com/mgalihpp/ai-pdf"
+              target="_blank"
+              className={buttonVariants({
+                variant: "outline",
+                size: "sm",
+              })}
+            >
+              <Github className="h-4 w-4 mr-1.5 dark:text-white text-black rounded-full" />
+              Github
+            </Link>
+            <ToggleTheme />
             {!user ? (
               <>
                 <Link
@@ -40,17 +56,6 @@ const Navbar = () => {
                   })}
                 >
                   Pricing
-                </Link>
-                <Link
-                  href="https://github.com/mgalihpp/ai-pdf"
-                  target="_blank"
-                  className={buttonVariants({
-                    variant: "outline",
-                    size: "sm",
-                  })}
-                >
-                  <Github className="h-4 w-4 mr-1.5 dark:text-white text-black rounded-full" />
-                  Github
                 </Link>
                 <LoginLink
                   className={buttonVariants({

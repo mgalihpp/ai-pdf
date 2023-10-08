@@ -8,8 +8,13 @@ import Link from "next/link";
 import { format } from "date-fns";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { getUserSubscriptionPlan } from "@/lib/stripe";
 
-const Dashboard = () => {
+interface PageProps {
+  subscriptionsPlan: Awaited<ReturnType<typeof getUserSubscriptionPlan>>;
+}
+
+const Dashboard = ({subscriptionsPlan}: PageProps) => {
   const [currentDeletingFile, setCurrentDeletingFile] = useState<string | null>(
     null
   );
@@ -35,7 +40,7 @@ const Dashboard = () => {
           My Files
         </h1>
 
-        <UploadButton />
+        <UploadButton isSubscribed={subscriptionsPlan.isSubscribed}/>
       </div>
 
       {/* display all user file */}

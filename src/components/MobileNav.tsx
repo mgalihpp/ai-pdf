@@ -1,0 +1,119 @@
+"use client";
+
+import { LogoutLink } from "@kinde-oss/kinde-auth-nextjs/server";
+import { ArrowRight, Menu } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+import { Button, buttonVariants } from "./ui/button";
+import ToggleTheme from "./ToggleTheme";
+import UserAvatar from "./Avatar";
+
+const MobileNav = ({ isAuth, imageUrl, name }: { isAuth: boolean, imageUrl: string, name: string }) => {
+  const [isOpen, setOpen] = useState<boolean>(false);
+
+  const toggleOpen = () => setOpen((prev) => !prev);
+
+  const pathname = usePathname();
+
+  useEffect(() => {
+    if (isOpen) toggleOpen();
+  }, [pathname]);
+
+  const closeOnCurrent = (href: string) => {
+    if (pathname === href) {
+      toggleOpen();
+    }
+  };
+
+  return (
+    <div className="flex flex-row items-center justify-center mr-1.5 sm:hidden">
+      <ToggleTheme />
+      <Button variant="ghost" onClick={toggleOpen} size='sm'>
+        <Menu className="relative z-50 h-5 w-5 text-zinc-700 mx-1.5 dark:text-zinc-200" />
+      </Button>
+      <UserAvatar imageUrl={imageUrl} name={name}/>
+
+      {isOpen ? (
+        <div className="fixed animate-in slide-in-from-top-5 fade-in-20 inset-0 z-0 w-full">
+          <ul className="absolute bg-white dark:bg-black border-b border-zinc-200 shadow-xl grid w-full gap-3 px-10 pt-20 pb-8">
+            {!isAuth ? (
+              <>
+                <li>
+                  <Link
+                    onClick={() => closeOnCurrent("/sign-up")}
+                    className="flex items-center w-full font-semibold text-green-600"
+                    href="/sign-up"
+                  >
+                    Get started
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Link>
+                </li>
+                <li className="my-3 h-px w-full bg-gray-300" />
+                <li>
+                  <Link
+                    onClick={() => closeOnCurrent("/sign-in")}
+                    className="flex items-center w-full font-semibold"
+                    href="/sign-in"
+                  >
+                    Sign in
+                  </Link>
+                </li>
+                <li className="my-3 h-px w-full bg-gray-300" />
+                <li>
+                  <Link
+                    onClick={() => closeOnCurrent("/pricing")}
+                    className="flex items-center w-full font-semibold"
+                    href="/pricing"
+                  >
+                    Pricing
+                  </Link>
+                </li>
+              </>
+            ) : (
+              <>
+                <li>
+                  <Link
+                    onClick={() => closeOnCurrent("/dashboard")}
+                    className={buttonVariants({
+                      className: "flex items-center w-full font-semibold",
+                      variant: "ghost",
+                    })}
+                    href="/dashboard"
+                  >
+                    Dashboard
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    onClick={() => closeOnCurrent("/pricing")}
+                    className={buttonVariants({
+                      className: "flex items-center w-full font-semibold",
+                      variant: "ghost",
+                    })}
+                    href="/pricing"
+                  >
+                    Pricing
+                  </Link>
+                </li>
+                <li className="my-3 h-px w-full bg-gray-300" />
+                <li>
+                  <LogoutLink
+                    className={buttonVariants({
+                      className: "flex items-center w-full font-semibold",
+                      variant: "ghost",
+                    })}
+                  >
+                    Log out
+                  </LogoutLink>
+                </li>
+              </>
+            )}
+          </ul>
+        </div>
+      ) : null}
+    </div>
+  );
+};
+
+export default MobileNav;

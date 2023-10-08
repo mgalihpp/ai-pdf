@@ -1,22 +1,27 @@
 "use client";
-import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { Cloud, File, Loader2 } from "lucide-react";
+
 import { useState } from "react";
+import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog";
+import { Button } from "./ui/button";
+
 import Dropzone from "react-dropzone";
+import { Cloud, File, Loader2 } from "lucide-react";
 import { Progress } from "./ui/progress";
 import { useUploadThing } from "@/app/lib/uploadthing";
 import { useToast } from "./ui/use-toast";
 import { trpc } from "@/app/_trpc/client";
 import { useRouter } from "next/navigation";
 
-const UploadDropZone = () => {
+const UploadDropzone = ({ isSubscribed }: { isSubscribed: boolean }) => {
   const router = useRouter();
-  const [isUploading, setIsUploading] = useState<boolean | null>(false);
-  const [uploadProgress, setUploadProgress] = useState<number>(0);
 
+  const [isUploading, setIsUploading] = useState<boolean>(false);
+  const [uploadProgress, setUploadProgress] = useState<number>(0);
   const { toast } = useToast();
-  const { startUpload } = useUploadThing("pdfUploader");
+
+  const { startUpload } = useUploadThing(
+    isSubscribed ? "proPlanUploader" : "freePlanUploader"
+  );
 
   const { mutate: startPolling } = trpc.getFile.useMutation({
     onSuccess: (file) => {
@@ -47,21 +52,24 @@ const UploadDropZone = () => {
       multiple={false}
       onDrop={async (acceptedFile) => {
         setIsUploading(true);
+
         const progressInterval = startSimulatedProgress();
 
-        //handle file uploading
+        // handle file uploading
         const res = await startUpload(acceptedFile);
 
         if (!res) {
           return toast({
             title: "Something went wrong",
-            description: "Please the file must be .PDF",
+            description: "Please try again later",
             variant: "destructive",
           });
         }
 
-        const [fileRespone] = res;
-        const key = fileRespone?.key;
+        const [fileResponse] = res;
+
+        const key = fileResponse?.key;
+
         if (!key) {
           return toast({
             title: "Something went wrong",
@@ -72,33 +80,35 @@ const UploadDropZone = () => {
 
         clearInterval(progressInterval);
         setUploadProgress(100);
+
         startPolling({ key });
       }}
     >
       {({ getRootProps, getInputProps, acceptedFiles }) => (
         <div
           {...getRootProps()}
-          className="border h-64 m-4 border-dashe border-primary rounded-lg"
+          className="border h-64 m-4 border-dashed border-gray-300 rounded-lg"
         >
           <div className="flex items-center justify-center h-full w-full">
             <label
               htmlFor="dropzone-file"
-              className="flex flex-col items-center justify-center w-full h-full rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 dark:bg-zinc-500 hover:dark:bg-zinc-600"
+              className="flex flex-col items-center justify-center w-full h-full rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100"
             >
               <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                <Cloud className="h-6 w-6 text-zinc-700 dark:text-zinc-50 mb-2" />
-                <p className="text-sm mb-2 text-zinc-700 dark:text-zinc-50">
+                <Cloud className="h-6 w-6 text-zinc-500 mb-2" />
+                <p className="mb-2 text-sm text-zinc-700">
                   <span className="font-semibold">Click to upload</span> or drag
                   and drop
                 </p>
-                <p className="text-xs text-zinc-500 dark:text-zinc-50/100 font-medium">
-                  PDF (up to 16M)
+                <p className="text-xs text-zinc-500">
+                  PDF (up to {isSubscribed ? "16" : "4"}MB)
                 </p>
               </div>
+
               {acceptedFiles && acceptedFiles[0] ? (
                 <div className="max-w-xs bg-white flex items-center rounded-md overflow-hidden outline outline-[1px] outline-zinc-200 divide-x divide-zinc-200">
                   <div className="px-3 py-2 h-full grid place-items-center">
-                    <File className="h-4 w-4 text-blue-400" />
+                    <File className="h-4 w-4 text-blue-500" />
                   </div>
                   <div className="px-3 py-2 h-full text-sm truncate">
                     {acceptedFiles[0].name}
@@ -123,8 +133,9 @@ const UploadDropZone = () => {
                   ) : null}
                 </div>
               ) : null}
+
               <input
-                {...getInputProps}
+                {...getInputProps()}
                 type="file"
                 id="dropzone-file"
                 className="hidden"
@@ -137,7 +148,7 @@ const UploadDropZone = () => {
   );
 };
 
-const UploadButton = () => {
+const UploadButton = ({ isSubscribed }: { isSubscribed: boolean }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (
@@ -154,7 +165,7 @@ const UploadButton = () => {
       </DialogTrigger>
 
       <DialogContent>
-        <UploadDropZone />
+        <UploadDropzone isSubscribed={isSubscribed} />
       </DialogContent>
     </Dialog>
   );

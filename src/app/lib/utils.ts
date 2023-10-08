@@ -9,5 +9,5 @@ export function cn(...inputs: ClassValue[]) {
 export function absoluteUrl(path: string) {
   if (typeof window !== "undefined") return path;
   if (process.env.VERCEL_URL) return `${path}`;
-  return `${path}`;
+  return `http://localhost:${process.env.PORT ?? 3000}${path}`;
 }

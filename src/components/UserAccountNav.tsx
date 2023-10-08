@@ -1,8 +1,5 @@
 import { getUserSubscriptionPlan } from "@/lib/stripe";
-import { Button, buttonVariants } from "./ui/button";
-import Image from "next/image";
-import { Avatar, AvatarFallback } from "./ui/avatar";
-import { Icons } from "./Icons";
+import { Button } from "./ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,6 +10,7 @@ import {
 import Link from "next/link";
 import { Gem } from "lucide-react";
 import { LogoutLink } from "@kinde-oss/kinde-auth-nextjs/server";
+import UserAvatar from "./Avatar";
 
 interface UserAccountProps {
   email: string | undefined;
@@ -27,23 +25,7 @@ const UserAccountNav = async ({ email, imageUrl, name }: UserAccountProps) => {
     <DropdownMenu>
       <DropdownMenuTrigger asChild className="overflow-visible">
         <Button className="rounded-full h-8 w-8 aspect-square bg-slate-400">
-          <Avatar className="relative w-8 h-8">
-            {imageUrl ? (
-              <div className="relative aspect-square h-full w-full">
-                <Image
-                  fill
-                  src={imageUrl}
-                  alt="profile picture"
-                  referrerPolicy="no-referrer"
-                />
-              </div>
-            ) : (
-              <AvatarFallback>
-                <span className="sr-only">{name}</span>
-                <Icons.user className="h-4 w-4 text-zinc-900" />
-              </AvatarFallback>
-            )}
-          </Avatar>
+          <UserAvatar imageUrl={imageUrl} name={name}/>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="dark:bg-black" align="end">

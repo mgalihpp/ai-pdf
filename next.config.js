@@ -8,11 +8,20 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: "avatars.githubusercontent.com"
-      }
-    ]
-  }
+        protocol: "https",
+        hostname: "avatars.githubusercontent.com",
+      },
+    ],
+  },
+  async redirects() {
+    return [
+      {
+        source: "/sign-in",
+        destination: "/api/auth/login",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;
