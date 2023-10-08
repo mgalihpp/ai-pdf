@@ -20,7 +20,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const light = true;
+  const light = false;
 
   return (
     <html lang="en" className={`${light ? "light" : "dark"}`}>

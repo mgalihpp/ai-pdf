@@ -34,10 +34,7 @@ export const appRouter = router({
 
       return { success: true };
     } catch (error) {
-      throw new TRPCError({
-        code: "INTERNAL_SERVER_ERROR",
-        message: "An internal server error occurred",
-      });
+      throw new TRPCError({ code: "INTERNAL_SERVER_ERROR" });
     }
   }),
   getUserFiles: privateProcedure.query(async ({ ctx }) => {

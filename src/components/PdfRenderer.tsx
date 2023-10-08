@@ -98,7 +98,7 @@ const PdfRenderer = ({ url }: PdfRendererProps) => {
                 }
               }}
             />
-            <p className="text-zinc-700 text-sm space-x-1">
+            <p className="text-zinc-700 dark:text-zinc-200 text-sm space-x-1">
               <span>/</span>
               <span>{numPages ?? "x"}</span>
             </p>

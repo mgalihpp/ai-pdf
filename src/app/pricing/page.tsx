@@ -90,7 +90,7 @@ const Page = () => {
           <h1 className='text-6xl font-bold sm:text-7xl'>
             Pricing
           </h1>
-          <p className='mt-5 text-gray-600 sm:text-lg'>
+          <p className='mt-5 text-gray-600 dark:text-gray-300 sm:text-lg'>
             Whether you&apos;re just trying out our service
             or need more, we&apos;ve got you covered.
           </p>
@@ -124,21 +124,21 @@ const Page = () => {
                     )}
 
                     <div className='p-5'>
-                      <h3 className='my-3 text-center font-display text-3xl font-bold'>
+                      <h3 className='my-3 text-center font-display text-3xl font-bold dark:text-black'>
                         {plan}
                       </h3>
-                      <p className='text-gray-500'>
+                      <p className='text-gray-500 dark:text-gray-900'>
                         {tagline}
                       </p>
-                      <p className='my-5 font-display text-6xl font-semibold'>
+                      <p className='my-5 font-display text-6xl font-semibold dark:text-gray-900'>
                         ${price}
                       </p>
-                      <p className='text-gray-500'>
+                      <p className='text-gray-500 dark:text-gray-900'>
                         per month
                       </p>
                     </div>
 
-                    <div className='flex h-20 items-center justify-center border-b border-t border-gray-200 bg-gray-50'>
+                    <div className='flex h-20 items-center justify-center border-b border-t border-gray-200 bg-gray-50 dark:text-gray-900'>
                       <div className='flex items-center space-x-1'>
                         <p>
                           {quota.toLocaleString()} PDFs/mo
@@ -147,7 +147,7 @@ const Page = () => {
 
                         <Tooltip delayDuration={300}>
                           <TooltipTrigger className='cursor-default ml-1.5'>
-                            <HelpCircle className='h-4 w-4 text-zinc-500' />
+                            <HelpCircle className='h-4 w-4 text-zinc-500 dark:text-zinc-900' />
                           </TooltipTrigger>
                           <TooltipContent className='w-80 p-2'>
                             How many PDFs you can upload per
@@ -165,7 +165,7 @@ const Page = () => {
                             className='flex space-x-5'>
                             <div className='flex-shrink-0'>
                               {negative ? (
-                                <Minus className='h-6 w-6 text-gray-300' />
+                                <Minus className='h-6 w-6 text-gray-300 dark:text-gray-900' />
                               ) : (
                                 <Check className='h-6 w-6 text-blue-500' />
                               )}
@@ -185,7 +185,7 @@ const Page = () => {
                                 <Tooltip
                                   delayDuration={300}>
                                   <TooltipTrigger className='cursor-default ml-1.5'>
-                                    <HelpCircle className='h-4 w-4 text-zinc-500' />
+                                    <HelpCircle className='h-4 w-4 text-zinc-500 dark:text-zinc-900' />
                                   </TooltipTrigger>
                                   <TooltipContent className='w-80 p-2'>
                                     {footnote}
@@ -219,7 +219,7 @@ const Page = () => {
                             className: 'w-full',
                             variant: 'secondary',
                           })}>
-                          {user ? 'Upgrade now' : 'Sign up'}
+                          {user ? 'Get Started' : 'Sign up'}
                           <ArrowRight className='h-5 w-5 ml-1.5' />
                         </Link>
                       ) : user ? (
@@ -229,6 +229,7 @@ const Page = () => {
                           href='/api/auth/login?'
                           className={buttonVariants({
                             className: 'w-full',
+                            variant: "secondary"
                           })}>
                           {user ? 'Upgrade now' : 'Sign up'}
                           <ArrowRight className='h-5 w-5 ml-1.5' />

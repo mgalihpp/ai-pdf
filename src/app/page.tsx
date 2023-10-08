@@ -23,13 +23,13 @@ export default function Home() {
         </p>
         <Link
           className={buttonVariants({
-            size: "lg",
+            size: "default",
             className: "mt-5",
           })}
           href="/dashboard"
           target="_blank"
         >
-          Get started <ArrowRight className="ml-2 h-5 w-5" />
+          Get started <ArrowRight className="ml-2 h-4 w-4" />
         </Link>
       </MaxWidthWrapper>
 
@@ -88,7 +88,7 @@ export default function Home() {
               Start chatting in minutes
             </h2>
             <p className="mt-4 text-lg text-gray-600 dark:text-gray-400">
-              Chatting to your PDF files has never been easier than with Quill.
+              Chatting to your PDF files has never been easier than with ai-pdf.
             </p>
           </div>
         </div>
