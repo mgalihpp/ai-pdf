@@ -46,7 +46,6 @@ export const ChatContextProvider = ({ fileId, children }: Props) => {
       if (!response.ok) {
         throw new Error("Failed to send message");
       }
-
       return response.body;
     },
     onMutate: async ({ message }) => {
@@ -111,7 +110,7 @@ export const ChatContextProvider = ({ fileId, children }: Props) => {
         });
       }
 
-      const reader = stream.getReader();
+      const reader = await stream.getReader();
       const decoder = new TextDecoder();
       let done = false;
 
@@ -121,9 +120,9 @@ export const ChatContextProvider = ({ fileId, children }: Props) => {
       while (!done) {
         const { value, done: doneReading } = await reader.read();
         done = doneReading;
-        const chunkValue = decoder.decode(value);
+        const chunkValue = await decoder.decode(value);
 
-        accResponse += chunkValue;
+        accResponse += await chunkValue;
 
         // append chunk to the actual message
         utils.getFileMessages.setInfiniteData(

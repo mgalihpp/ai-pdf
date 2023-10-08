@@ -65,10 +65,12 @@ export const POST = async (req: NextRequest) => {
     take: 6,
   });
 
-  const formattedPrevMessages = prevMessages.map((msg) => ({
+  const formattedPrevMessages = await prevMessages.map((msg) => ({
     role: msg.isUserMessage ? ("user" as const) : ("assistant" as const),
     content: msg.text,
   }));
+
+  console.log(formattedPrevMessages)
 
   const response = await openai.chat.completions.create({
     model: "gpt-3.5-turbo",
