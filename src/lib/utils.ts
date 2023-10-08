@@ -36,7 +36,7 @@ export function constructMetadata({
       title,
       description,
       images: [image],
-      creator: "@joshtriedcoding"
+      creator: "@mgalihpp"
     },
     icons,
     metadataBase: new URL('https://ai-pdf-mgalihpp.vercel.app'),
