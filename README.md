@@ -35,6 +35,27 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
+## Feature
+<!--
+
+-🛠️ Complete SaaS Built From Scratch
+-💻 Beautiful Landing Page & Pricing Page Included
+-💳 Free & Pro Plan Using Stripe
+-📄 A Beautiful And Highly Functional PDF Viewer
+-🔄 Streaming API Responses in Real-Time
+-🔒 Authentication Using Kinde
+-🎨 Clean, Modern UI Using 'shadcn-ui'
+-🚀 Optimistic UI Updates for a Great UX
+-⚡ Infinite Message Loading for Performance
+-📤 Intuitive Drag n’ Drop Uploads
+-✨ Instant Loading States
+-🔧 Modern Data Fetching Using tRPC & Zod
+-🧠 LangChain for Infinite AI Memory
+-🌲 Pinecone as our Vector Storage
+-📊 Prisma as our ORM
+-🔤 100% written in TypeScript
+-🎁 ...much more
+-->
 ## Stack 
 ![React JS](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB) ![NEXT JS](https://img.shields.io/badge/next%20js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white) ![PRISMA](https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white)
 ![TAILWIND](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white) <img src="https://trpc.io/img/logo.svg" width='50' height='50' alt='tRPC'>
