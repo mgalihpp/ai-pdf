@@ -19,7 +19,7 @@ const ToggleTheme = () => {
   return (
     <>
       {theme ? (
-        <Button variant="ghost" onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
+        <Button variant="outline" onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
           <Sun className="h-4 w-4" />
         </Button>
       ) : (

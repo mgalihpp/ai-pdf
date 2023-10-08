@@ -31,7 +31,7 @@ const Navbar = () => {
             </span>
           </Link>
           {/* mobile nav */}
-          <MobileNav isAuth={!!user} imageUrl={user.picture ?? ""} name={`${user.given_name} ${user.family_name}`} />
+          <MobileNav isAuth={!!user}/>
 
           <div className="hidden items-center space-x-4 sm:flex">
             <Link

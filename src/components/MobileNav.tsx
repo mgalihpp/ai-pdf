@@ -9,7 +9,11 @@ import { Button, buttonVariants } from "./ui/button";
 import ToggleTheme from "./ToggleTheme";
 import UserAvatar from "./Avatar";
 
-const MobileNav = ({ isAuth, imageUrl, name }: { isAuth: boolean, imageUrl: string, name: string }) => {
+const MobileNav = ({
+  isAuth,
+}: {
+  isAuth: boolean;
+}) => {
   const [isOpen, setOpen] = useState<boolean>(false);
 
   const toggleOpen = () => setOpen((prev) => !prev);
@@ -29,10 +33,9 @@ const MobileNav = ({ isAuth, imageUrl, name }: { isAuth: boolean, imageUrl: stri
   return (
     <div className="flex flex-row items-center justify-center mr-1.5 sm:hidden">
       <ToggleTheme />
-      <Button variant="ghost" onClick={toggleOpen} size='sm'>
+      <Button variant="ghost" onClick={toggleOpen} size="sm">
         <Menu className="relative z-50 h-5 w-5 text-zinc-700 mx-1.5 dark:text-zinc-200" />
       </Button>
-      <UserAvatar imageUrl={imageUrl} name={name}/>
 
       {isOpen ? (
         <div className="fixed animate-in slide-in-from-top-5 fade-in-20 inset-0 z-0 w-full">

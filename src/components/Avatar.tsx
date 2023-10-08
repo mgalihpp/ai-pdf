@@ -1,3 +1,5 @@
+"use client"
+
 import Image from "next/image";
 import { Avatar, AvatarFallback } from "./ui/avatar";
 import { Icons } from "./Icons";
