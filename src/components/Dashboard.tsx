@@ -55,7 +55,7 @@ const Dashboard = ({subscriptionsPlan}: PageProps) => {
             .map((file) => (
               <li
                 key={file.id}
-                className="col-span-1 divide-y divide-gray-200 rounded-lg bg-white shadow transition hover:shadow-lg"
+                className="col-span-1 divide-y divide-gray-200 rounded-lg bg-white dark:bg-zinc-900 shadow transition hover:shadow-lg"
               >
                 <Link
                   href={`/dashboard/${file.id}`}
@@ -65,7 +65,7 @@ const Dashboard = ({subscriptionsPlan}: PageProps) => {
                     <div className="h-10 w-10 flex-shrink-0 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500" />
                     <div className="flex-1 truncate">
                       <div className="flex items-center space-x-3">
-                        <h3 className="truncate text-lg font-medium text-zinc-900">
+                        <h3 className="truncate text-lg font-medium text-zinc-900 dark:text-zinc-50">
                           {file.name}
                         </h3>
                       </div>
@@ -80,13 +80,12 @@ const Dashboard = ({subscriptionsPlan}: PageProps) => {
                   </div>
                   <div className="flex items-center gap-2">
                     <MessageSquare className="h-4 w-4" />
-                    mocked
+                    {file.uploadStatus}
                   </div>
                   <Button
                     onClick={() => deleteFile({ id: file.id })}
                     size="sm"
                     className="w-full"
-                    variant="destructive"
                   >
                     {currentDeletingFile === file.id ? (
                       <Loader2 className="h-4 w-4 animate-spin" />

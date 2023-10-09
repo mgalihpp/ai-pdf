@@ -92,7 +92,7 @@ const UploadDropzone = ({ isSubscribed }: { isSubscribed: boolean }) => {
           <div className="flex items-center justify-center h-full w-full">
             <label
               htmlFor="dropzone-file"
-              className="flex flex-col items-center justify-center w-full h-full rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100"
+              className="flex flex-col items-center justify-center w-full h-full rounded-lg cursor-pointer bg-gray-50 dark:bg-gray-300 hover:bg-gray-100"
             >
               <div className="flex flex-col items-center justify-center pt-5 pb-6">
                 <Cloud className="h-6 w-6 text-zinc-500 mb-2" />
@@ -110,7 +110,7 @@ const UploadDropzone = ({ isSubscribed }: { isSubscribed: boolean }) => {
                   <div className="px-3 py-2 h-full grid place-items-center">
                     <File className="h-4 w-4 text-blue-500" />
                   </div>
-                  <div className="px-3 py-2 h-full text-sm truncate">
+                  <div className="px-3 py-2 h-full text-sm dark:text-zinc-700 truncate">
                     {acceptedFiles[0].name}
                   </div>
                 </div>
@@ -123,11 +123,11 @@ const UploadDropzone = ({ isSubscribed }: { isSubscribed: boolean }) => {
                       uploadProgress === 100 ? "bg-green-500" : ""
                     }
                     value={uploadProgress}
-                    className="h-1 w-full bg-zinc-200"
+                    className="h-1 w-full dark:bg-zinc-700 bg-zinc-200"
                   />
                   {uploadProgress === 100 ? (
-                    <div className="flex gap-1 items-center justify-center text-sm text-zinc-700 text-center pt-2">
-                      <Loader2 className="h-3 w-3 animate-spin" />
+                    <div className="flex gap-1 items-center justify-center text-sm text-zinc-700 dark:text-zinc-700 text-center pt-2">
+                      <Loader2 className="h-3 w-3 animate-spin dark:text-zinc-700" />
                       Redirecting...
                     </div>
                   ) : null}
